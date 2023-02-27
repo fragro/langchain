@@ -88,7 +88,7 @@ class HuggingFacePipeline(LLM, BaseModel):
                 if _model_kwargs["revision"]:
                     rev = _model_kwargs["revision"]
                     del _model_kwargs["revision"]
-                    model = AutoModelForCausalLM.from_pretrained(model_id, revision: rev, **_model_kwargs)
+                    model = AutoModelForCausalLM.from_pretrained(model_id, revision=rev, **_model_kwargs)
                 else:
                     model = AutoModelForCausalLM.from_pretrained(model_id, **_model_kwargs)
             elif task == "text2text-generation":
