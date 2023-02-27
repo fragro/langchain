@@ -84,7 +84,13 @@ class HuggingFacePipeline(LLM, BaseModel):
 
         try:
             if task == "text-generation":
-                model = AutoModelForCausalLM.from_pretrained(model_id, **_model_kwargs)
+                # Fix for conflict in transformers hub_kwargs
+                if _model_kwargs["revision"]:
+                    rev = _model_kwargs["revision"]
+                    del _model_kwargs["revision"]
+                    model = AutoModelForCausalLM.from_pretrained(model_id, revision: rev, **_model_kwargs)
+                else:
+                    model = AutoModelForCausalLM.from_pretrained(model_id, **_model_kwargs)
             elif task == "text2text-generation":
                 model = AutoModelForSeq2SeqLM.from_pretrained(model_id, **_model_kwargs)
             else:
