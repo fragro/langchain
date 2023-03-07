@@ -14,6 +14,7 @@ from langchain.llms.gooseai import GooseAI
 from langchain.llms.huggingface_endpoint import HuggingFaceEndpoint
 from langchain.llms.huggingface_hub import HuggingFaceHub
 from langchain.llms.huggingface_pipeline import HuggingFacePipeline
+from langchain.llms.huggingface_model import HuggingFaceModel
 from langchain.llms.modal import Modal
 from langchain.llms.nlpcloud import NLPCloud
 from langchain.llms.openai import AzureOpenAI, OpenAI, OpenAIChat
@@ -67,6 +68,7 @@ type_to_cls_dict: Dict[str, Type[BaseLLM]] = {
     "openai": OpenAI,
     "petals": Petals,
     "huggingface_pipeline": HuggingFacePipeline,
+    "huggingface_model": HuggingFaceModel,
     "azure": AzureOpenAI,
     "self_hosted": SelfHostedPipeline,
     "self_hosted_hugging_face": SelfHostedHuggingFaceLLM,

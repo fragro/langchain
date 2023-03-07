@@ -37,6 +37,7 @@ from langchain.llms import (
     Writer,
 )
 from langchain.llms.huggingface_pipeline import HuggingFacePipeline
+from langchain.llms.huggingface_model import HuggingFaceModel
 from langchain.prompts import (
     BasePromptTemplate,
     FewShotPromptTemplate,
@@ -89,6 +90,7 @@ __all__ = [
     "Wikipedia",
     "HuggingFaceHub",
     "HuggingFacePipeline",
+    "HuggingFaceModel",
     "SQLDatabase",
     "SQLDatabaseChain",
     "FAISS",

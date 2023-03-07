@@ -8,12 +8,8 @@ from pydantic import BaseModel, Extra
 from langchain.llms.base import LLM
 from langchain.llms.utils import enforce_stop_tokens
 
-DEFAULT_MODEL_ID = "gpt2"
-DEFAULT_TASK = "text-generation"
-VALID_TASKS = ("text2text-generation", "text-generation")
 
 logger = logging.getLogger()
-
 
 class HuggingFaceModel(LLM, BaseModel):
     """Wrapper around HuggingFace Pipeline API.
