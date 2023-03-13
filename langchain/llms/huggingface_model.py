@@ -33,7 +33,7 @@ class HuggingFaceModel(LLM, BaseModel):
 
     model: Any  #: :meta private:
     tokenizer: Any  #: :meta private:
-    device: str = "cpu"
+    device: int = -1
     model_kwargs: Optional[dict] = None
     """Key word arguments to pass to the model."""
 
@@ -79,7 +79,7 @@ class HuggingFaceModel(LLM, BaseModel):
         response = self.model.generate(
             input_ids=input_ids,
             pad_token_id=self.tokenizer.eos_token_id,
-            **model_kwargs
+            **self.model_kwargs
         )
         text = self.tokenizer.decode(response[0])
         if stop is not None:
