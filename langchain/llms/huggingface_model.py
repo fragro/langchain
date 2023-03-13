@@ -79,7 +79,6 @@ class HuggingFaceModel(LLM, BaseModel):
             input_ids = input_ids.to('cuda') if self.device > 0 else torch.device("cpu")
         response = self.model.generate(
             input_ids=input_ids,
-            pad_token_id=self.tokenizer.eos_token_id,
             **self.model_kwargs
         )
         text = self.tokenizer.decode(response[0])
