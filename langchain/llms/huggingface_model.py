@@ -62,7 +62,7 @@ class HuggingFaceModel(LLM, BaseModel):
             import torch
 
             cuda_device_count = torch.cuda.device_count()
-            if self.device < -1 or (self.device >= cuda_device_count):
+            if self.device < -1 or (self.device >= cuda_device_count+1):
                 raise ValueError(
                     f"Got device=={self.device}, "
                     f"device is required to be within [-1, {cuda_device_count})"
@@ -70,9 +70,10 @@ class HuggingFaceModel(LLM, BaseModel):
             if self.device < 0 and cuda_device_count > 0:
                 logger.warning(
                     "Device has %d GPUs available. "
-                    "Provide device={deviceId} to `from_model_id` to use available"
+                    "Provide device={deviceId} to the initialization of this class to use available"
                     "GPUs for execution. deviceId is -1 (default) for CPU and "
                     "can be a positive integer associated with CUDA device id.",
+                    cuda_device_count,
                     cuda_device_count,
                 )
             input_ids = input_ids.to('cuda') if self.device > 0 else torch.device("cpu")
